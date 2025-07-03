@@ -2,7 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head><title>User List</title></head>
 <body>
-<nav><a th:href="@{/users}">🏠 Home</a></nav>
+<nav>
+    <a th:href="@{/}">HOME</a> |
+    <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+    <a th:href="@{/users/db2}">사용자목록(DB2)</a>
+    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
+</nav>
 <hr/>
 
 <h2>User List</h2>

@@ -16,6 +16,10 @@ public class WelcomeController {
     ApplicationContext context;
     //==================================================================
 
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
 
     @GetMapping("/welcome")
     public String welcome() {

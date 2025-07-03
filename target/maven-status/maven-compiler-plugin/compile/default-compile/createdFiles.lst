@@ -1,5 +1,6 @@
 com\example\login\mapper\UserMapper.class
 com\example\login\controller\WelcomeController.class
+com\example\login\controller\UserDb2Controller.class
 com\example\login\config\MultiDataSourceConfig.class
 com\example\login\model\User.class
 com\example\login\config\Db2MapperConfig.class
@@ -15,5 +16,6 @@ com\example\login\controller\LoginController.class
 com\example\login\mapper\db1\UserMapperDb1.class
 com\example\login\mapper\db2\UserMapperDb2.class
 com\example\login\config\Db2SchemaInitializer.class
+com\example\login\service\UserDb2Service.class
 com\example\login\service\LoginService.class
 com\example\login\config\SecurityConfig.class
