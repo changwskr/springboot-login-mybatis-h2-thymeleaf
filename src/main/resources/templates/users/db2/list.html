@@ -11,9 +11,11 @@
 <hr/>
 <h2>DB2 User List</h2>
 <table border="1">
-    <tr><th>Username</th><th>Address</th><th>Age</th><th>Job</th><th>Company</th><th>Actions</th></tr>
+    <tr><th>Username</th><th>Password</th><th>Token</th><th>Address</th><th>Age</th><th>Job</th><th>Company</th><th>Actions</th></tr>
     <tr th:each="user : ${users}">
         <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.token}"></td>
         <td th:text="${user.address}"></td>
         <td th:text="${user.age}"></td>
         <td th:text="${user.job}"></td>
