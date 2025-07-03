@@ -20,6 +20,8 @@ public class User {
     private String job;
     private String company;
 
+    private String token;
+
     // Getters and Setters
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -38,4 +40,7 @@ public class User {
 
     public String getCompany() { return company; }
     public void setCompany(String company) { this.company = company; }
+
+    public String getToken() { return token; }
+    public void setToken(String token) { this.token = token; }
 }

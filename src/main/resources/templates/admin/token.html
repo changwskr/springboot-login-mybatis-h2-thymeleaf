@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Admin Token Generator</title></head>
+<body>
+<nav>
+    <a th:href="@{/}">HOME</a>
+    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
+</nav>
+<hr/>
+<h2>토큰 생성(Admin)</h2>
+<form th:action="@{/admin/token}" method="post">
+    <button type="submit">토큰 생성 및 파일 저장</button>
+</form>
+<div th:if="${token}">
+    <p><b>생성된 토큰:</b> <span th:text="${token}"></span></p>
+    <p><b>파일 경로:</b> <span th:text="${filePath}"></span></p>
+</div>
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+</body>
+</html> 

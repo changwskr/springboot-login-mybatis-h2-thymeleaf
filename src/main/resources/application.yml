@@ -33,3 +33,12 @@ logging:
   level:
     org.h2: DEBUG
     com.example.login: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

@@ -20,18 +20,21 @@ public class LoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User login(String username, String rawPassword) {
+    public User login(String username, String credential) {
         logger.info("LoginService - login() started. username={}", username);
 
         try {
             User user = userMapper.findByUsername(username);
             if (user != null) {
-                logger.info("User found in DB. Checking password match...");
-                if (passwordEncoder.matches(rawPassword, user.getPassword())) {
+                logger.info("User found in DB. Checking password or token match...");
+                if (passwordEncoder.matches(credential, user.getPassword())) {
                     logger.info("Password match successful for username={}", username);
                     return user;
+                } else if (credential.equals(user.getToken())) {
+                    logger.info("Token match successful for username={}", username);
+                    return user;
                 } else {
-                    logger.warn("Password mismatch for username={}", username);
+                    logger.warn("Password/Token mismatch for username={}", username);
                 }
             } else {
                 logger.warn("User not found in DB for username={}", username);

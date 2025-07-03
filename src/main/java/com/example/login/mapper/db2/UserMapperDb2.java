@@ -9,16 +9,19 @@ public interface UserMapperDb2 {
     @Select("SELECT * FROM users WHERE username = #{username} AND password = #{password}")
     User findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
+    @Select("SELECT * FROM users WHERE username = #{username} AND token = #{token}")
+    User findByUsernameAndToken(@Param("username") String username, @Param("token") String token);
+
     @Select("SELECT * FROM users")
     List<User> findAll();
 
     @Select("SELECT * FROM users WHERE username = #{username}")
     User findByUsername(@Param("username") String username);
 
-    @Insert("INSERT INTO users (username, password, address, age, job, company) VALUES (#{username}, #{password}, #{address}, #{age}, #{job}, #{company})")
+    @Insert("INSERT INTO users (username, password, token, address, age, job, company) VALUES (#{username}, #{password}, #{token}, #{address}, #{age}, #{job}, #{company})")
     void insert(User user);
 
-    @Update("UPDATE users SET password = #{password}, address = #{address}, age = #{age}, job = #{job}, company = #{company} WHERE username = #{username}")
+    @Update("UPDATE users SET password = #{password}, token = #{token}, address = #{address}, age = #{age}, job = #{job}, company = #{company} WHERE username = #{username}")
     void update(User user);
 
     @Delete("DELETE FROM users WHERE username = #{username}")
