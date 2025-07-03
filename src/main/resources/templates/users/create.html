@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Create User</title></head>
+<body>
+<nav>
+    <a th:href="@{/}">HOME</a> |
+    <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+    <a th:href="@{/users/db2}">사용자목록(DB2)</a>
+    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
+</nav>
+<hr/>
+
+<h2>Create New User</h2>
+<form th:action="@{/users}" th:object="${user}" method="post">
+    Username: <input type="text" th:field="*{username}" />
+    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+
+    Password: <input type="password" th:field="*{password}" />
+    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
+
+    Address: <input type="text" th:field="*{address}" /><br/>
+    Age: <input type="number" th:field="*{age}" />
+    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br/>
+
+    Job:
+    <select th:field="*{job}">
+        <option th:each="j : ${jobs}" th:value="${j}" th:text="${j}"></option>
+    </select><br/>
+
+    Company:
+    <select th:field="*{company}">
+        <option th:each="c : ${companies}" th:value="${c}" th:text="${c}"></option>
+    </select><br/>
+
+    <button type="submit">Create</button>
+</form>
+</body>
+</html>
