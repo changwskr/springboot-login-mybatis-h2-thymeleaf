@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>예금 등록</title>
+</head>
+<body>
+    <h1>예금 등록</h1>
+    <form th:action="@{/deposite/save}" th:object="${deposite}" method="post">
+        <label>이름: <input type="text" th:field="*{name}" /></label><br/>
+        <label>회사: <input type="text" th:field="*{company}" /></label><br/>
+        <label>주소: <input type="text" th:field="*{address}" /></label><br/>
+        <label>연락처: <input type="text" th:field="*{contact}" /></label><br/>
+        <button type="submit">저장</button>
+    </form>
+    <a th:href="@{/deposite/list}">목록으로</a>
+</body>
+</html> 

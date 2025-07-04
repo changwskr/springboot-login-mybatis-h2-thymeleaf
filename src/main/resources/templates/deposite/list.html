@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>예금 목록</title>
+</head>
+<body>
+    <h1>예금 목록</h1>
+    <a th:href="@{/deposite/form}">신규 등록</a>
+    <table border="1">
+        <tr>
+            <th>ID</th><th>이름</th><th>회사</th><th>상세</th><th>삭제</th>
+        </tr>
+        <tr th:each="item : ${list}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.company}"></td>
+            <td><a th:href="@{/deposite/view/{id}(id=${item.id})}">보기</a></td>
+            <td>
+                <form th:action="@{/deposite/delete/{id}(id=${item.id})}" method="post">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html> 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>예금 상세</title>
+</head>
+<body>
+    <h1>예금 상세</h1>
+    <div th:if="${deposite != null}">
+        <p>ID: <span th:text="${deposite.id}"></span></p>
+        <p>이름: <span th:text="${deposite.name}"></span></p>
+        <p>회사: <span th:text="${deposite.company}"></span></p>
+        <p>주소: <span th:text="${deposite.address}"></span></p>
+        <p>연락처: <span th:text="${deposite.contact}"></span></p>
+    </div>
+    <a th:href="@{/deposite/list}">목록으로</a>
+</body>
+</html> 
