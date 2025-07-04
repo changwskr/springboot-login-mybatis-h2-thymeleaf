@@ -4,8 +4,10 @@
 <body>
 <h1>HOME</h1>
 <nav>
+    <a th:href="@{/}">HOME</a> |
     <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
     <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+    <a th:href="@{/users/sync}">통합사용자관리</a> |
     <a th:href="@{/admin/token}">토큰 생성(Admin)</a> |
     <a href="/swagger-ui/index.html" target="_blank">Swagger</a> |
     <a href="/actuator" target="_blank">Actuator</a>
@@ -13,5 +15,67 @@
 </nav>
 <hr/>
 <p>원하는 사용자 목록, 토큰 생성, Swagger 또는 Actuator를 선택하세요.</p>
+
+<div style="margin-top: 20px;">
+    <h3>사용자 관리:</h3>
+    <ul>
+        <li><a th:href="@{/users/db1}">사용자목록(DB1)</a> - DB1의 사용자만 조회/관리</li>
+        <li><a th:href="@{/users/db2}">사용자목록(DB2)</a> - DB2의 사용자만 조회/관리</li>
+        <li><a th:href="@{/users/sync}" style="color: #2196F3; font-weight: bold;">통합사용자관리</a> - 두 DB에 동시에 등록/수정/삭제</li>
+    </ul>
+</div>
+
+<div style="margin-top: 20px;">
+    <h3>관리자 기능:</h3>
+    <ul>
+        <li><a th:href="@{/admin/token}">토큰 생성</a> - 관리자 토큰 생성</li>
+        <li><a th:href="@{/swagger-ui.html}">Swagger UI</a> - REST API 문서</li>
+    </ul>
+</div>
+
+<div style="margin-top: 20px;">
+    <h3>시스템 정보:</h3>
+    <ul>
+        <li><a th:href="@{/actuator/health}">Health Check</a> - 시스템 상태 확인</li>
+        <li><a th:href="@{/api/health}">REST Health Check</a> - REST API 상태 확인</li>
+    </ul>
+</div>
+
+<div style="margin-top: 20px;">
+    <h3>REST API 엔드포인트:</h3>
+    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px;">
+        <h4>사용자 관리 API:</h4>
+        <ul>
+            <li><strong>DB1 사용자:</strong> <code>/api/users/db1</code></li>
+            <li><strong>DB2 사용자:</strong> <code>/api/users/db2</code></li>
+            <li><strong>통합 사용자:</strong> <code>/api/users/sync</code></li>
+            <li><strong>기본 사용자:</strong> <code>/api/users</code></li>
+        </ul>
+        
+        <h4>인증 API:</h4>
+        <ul>
+            <li><strong>로그인:</strong> <code>POST /api/auth/login</code></li>
+            <li><strong>로그아웃:</strong> <code>POST /api/auth/logout</code></li>
+            <li><strong>상태 확인:</strong> <code>GET /api/auth/status</code></li>
+        </ul>
+        
+        <h4>관리자 API:</h4>
+        <ul>
+            <li><strong>토큰 생성:</strong> <code>POST /api/admin/token/generate</code></li>
+            <li><strong>토큰 상태:</strong> <code>GET /api/admin/token/status</code></li>
+        </ul>
+        
+        <h4>시스템 API:</h4>
+        <ul>
+            <li><strong>Health Check:</strong> <code>GET /api/health</code></li>
+        </ul>
+        
+        <p style="margin-top: 10px; color: #666;">
+            <strong>참고:</strong> 모든 REST API는 JSON 형식으로 요청/응답하며, 
+            <a href="/swagger-ui/index.html" target="_blank" style="color: #007bff;">Swagger UI</a>에서 
+            상세한 API 문서를 확인할 수 있습니다.
+        </p>
+    </div>
+</div>
 </body>
 </html>

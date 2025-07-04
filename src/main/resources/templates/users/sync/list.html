@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>통합 사용자 목록 (DB1 + DB2)</title></head>
+<body>
+<nav>
+    <a th:href="@{/}">HOME</a> |
+    <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+    <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+    <a th:href="@{/users/sync}">통합사용자목록</a>
+    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
+</nav>
+<hr/>
+<h2>통합 사용자 목록 (DB1 + DB2)</h2>
+<p style="color: blue; font-weight: bold;">※ 이 화면에서 등록/수정/삭제하면 두 DB에 동시에 반영됩니다.</p>
+
+<a th:href="@{/users/sync/new}" style="background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">새 사용자 등록</a>
+<br/><br/>
+
+<table border="1" style="width: 100%; border-collapse: collapse;">
+    <tr style="background-color: #f2f2f2;">
+        <th>Username</th>
+        <th>Password</th>
+        <th>Token</th>
+        <th>Address</th>
+        <th>Age</th>
+        <th>Job</th>
+        <th>Company</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.token}"></td>
+        <td th:text="${user.address}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.job}"></td>
+        <td th:text="${user.company}"></td>
+        <td>
+            <a th:href="@{'/users/sync/edit/' + ${user.username}}" style="color: #2196F3;">Edit</a> |
+            <a th:href="@{'/users/sync/delete/' + ${user.username}}" style="color: #f44336;" onclick="return confirm('정말 삭제하시겠습니까? 두 DB에서 모두 삭제됩니다.')">Delete</a>
+        </td>
+    </tr>
+</table>
+
+<div style="margin-top: 20px; padding: 10px; background-color: #e7f3ff; border-left: 4px solid #2196F3;">
+    <h3>사용법 안내:</h3>
+    <ul>
+        <li><strong>새 사용자 등록:</strong> "새 사용자 등록" 버튼을 클릭하여 사용자를 등록하면 DB1과 DB2에 동시에 저장됩니다.</li>
+        <li><strong>사용자 수정:</strong> "Edit" 링크를 클릭하여 사용자 정보를 수정하면 두 DB에서 동시에 업데이트됩니다.</li>
+        <li><strong>사용자 삭제:</strong> "Delete" 링크를 클릭하여 사용자를 삭제하면 두 DB에서 동시에 삭제됩니다.</li>
+        <li><strong>목록 조회:</strong> 이 화면에서는 DB1과 DB2의 모든 사용자를 통합하여 표시합니다.</li>
+    </ul>
+</div>
+</body>
+</html> 

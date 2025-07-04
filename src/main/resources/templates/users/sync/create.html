@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>새 사용자 등록 (DB1 + DB2)</title></head>
+<body>
+<nav>
+    <a th:href="@{/}">HOME</a> |
+    <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+    <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+    <a th:href="@{/users/sync}">통합사용자목록</a>
+    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
+</nav>
+<hr/>
+
+<h2>새 사용자 등록 (DB1 + DB2)</h2>
+<p style="color: blue; font-weight: bold;">※ 이 폼에서 등록하면 두 DB에 동시에 저장됩니다.</p>
+
+<form th:action="@{/users/sync}" th:object="${user}" method="post" style="max-width: 500px;">
+    <div style="margin-bottom: 15px;">
+        <label for="username">Username:</label><br/>
+        <input type="text" id="username" th:field="*{username}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color: red; font-size: 12px;"></div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="password">Password:</label><br/>
+        <input type="password" id="password" th:field="*{password}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red; font-size: 12px;"></div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="address">Address:</label><br/>
+        <input type="text" id="address" th:field="*{address}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="age">Age:</label><br/>
+        <input type="number" id="age" th:field="*{age}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" />
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" style="color: red; font-size: 12px;"></div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="job">Job:</label><br/>
+        <select id="job" th:field="*{job}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+            <option value="">직업을 선택하세요</option>
+            <option th:each="j : ${jobs}" th:value="${j}" th:text="${j}"></option>
+        </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="company">Company:</label><br/>
+        <select id="company" th:field="*{company}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+            <option value="">회사를 선택하세요</option>
+            <option th:each="c : ${companies}" th:value="${c}" th:text="${c}"></option>
+        </select>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <label for="token">Token:</label><br/>
+        <input type="text" id="token" th:field="*{token}" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;" placeholder="토큰을 입력하세요 (선택사항)" />
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button type="submit" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">두 DB에 등록</button>
+        <a th:href="@{/users/sync}" style="background-color: #f44336; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; margin-left: 10px;">취소</a>
+    </div>
+</form>
+
+<div style="margin-top: 20px; padding: 10px; background-color: #fff3cd; border-left: 4px solid #ffc107;">
+    <h3>주의사항:</h3>
+    <ul>
+        <li>사용자명은 고유해야 합니다.</li>
+        <li>비밀번호는 최소 6자 이상이어야 합니다.</li>
+        <li>나이는 0-120 사이의 값이어야 합니다.</li>
+        <li>등록 시 DB1과 DB2에 동시에 저장됩니다.</li>
+    </ul>
+</div>
+</body>
+</html> 
