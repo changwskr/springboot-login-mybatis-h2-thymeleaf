@@ -28,7 +28,7 @@ public class UserController {
 
     @GetMapping
     public String listUsers(Model model) {
-        logger.info("=== UserController.listUsers() START ===");
+        logger.info("=== UserController.listUsers() START ===" + model.toString());
         try {
             List<User> users = userService.findAll();
             model.addAttribute("users", users);
