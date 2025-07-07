@@ -9,7 +9,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+//@Repository
 public class H3JPADepositeDAOImpl implements IH3DepositeDAO {
 
     @PersistenceContext
@@ -33,7 +33,7 @@ public class H3JPADepositeDAOImpl implements IH3DepositeDAO {
     @Override
     public Optional<DMember> findByName(String name) {
         TypedQuery<DMember> query = entityManager.createQuery(
-            "SELECT m FROM DMember m WHERE m.name = :name", DMember.class);
+                "SELECT m FROM DMember m WHERE m.name = :name", DMember.class);
         query.setParameter("name", name);
         List<DMember> result = query.getResultList();
         return result.stream().findFirst();
@@ -42,7 +42,7 @@ public class H3JPADepositeDAOImpl implements IH3DepositeDAO {
     @Override
     public List<DMember> findAll() {
         TypedQuery<DMember> query = entityManager.createQuery(
-            "SELECT m FROM DMember m", DMember.class);
+                "SELECT m FROM DMember m", DMember.class);
         return query.getResultList();
     }
 } 

@@ -13,7 +13,7 @@ import java.util.HashMap;
 @Repository
 public class H3MEMDepositeDAOImpl implements IH3DepositeDAO {
     private static Map<Long, DMember> store = new HashMap<>();
-    private final AtomicLong idGenerator = new AtomicLong(1);
+    private static AtomicLong idGenerator = new AtomicLong(1);
 
     @Override
     public DMember save(DMember member) {

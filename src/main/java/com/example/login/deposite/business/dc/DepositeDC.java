@@ -1,11 +1,12 @@
-package com.example.login.deposite.business.dc.dao;
+package com.example.login.deposite.business.dc;
 
 import com.example.login.deposite.business.dto.DepositeDDTO;
+import com.example.login.deposite.business.dc.dao.IH3DepositeDAO;
 import com.example.login.deposite.business.dc.model.DMember;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class DepositeDC {
     private final IH3DepositeDAO h3DepositeDAO;
 
     @Autowired
-    public DepositeDC(IH3DepositeDAO h3DepositeDAO) {
+    public DepositeDC(@Qualifier("h3MyBatisDepositeDAOImpl")IH3DepositeDAO h3DepositeDAO) {
         this.h3DepositeDAO = h3DepositeDAO;
     }
 

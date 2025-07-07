@@ -34,6 +34,6 @@ public class DepositeCDTO {
     private String contact;          // 연락처
     
     // 공통 DTO 및 상세 DTO 리스트
-    private CommonDTO comdto;        // 공통 DTO
+    private CommonDTO comDTO;        // 공통 DTO
     private List<DepositeDDTO> ddto; // 예금 상세 DTO 리스트
 } 

@@ -1,4 +1,4 @@
-package com.example.login.deposite.business.dc.dao;
+package com.example.login.deposite.business.dc.dao.mapper;
 
 import com.example.login.deposite.business.dc.model.DMember;
 import org.apache.ibatis.annotations.*;
