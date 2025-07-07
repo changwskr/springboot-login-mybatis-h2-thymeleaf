@@ -23,6 +23,49 @@
             color: #dc3545 !important;
             font-weight: bold;
         }
+        .form-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -42,28 +85,137 @@
 
     <h1>사용자 생성</h1>
     
-    <form th:action="@{/users}" th:object="${user}" method="post">
-        Username: <input type="text" th:field="*{username}" />
-        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+    <form th:action="@{/users}" th:object="${user}" method="post" style="max-width: 800px;">
+        
+        <!-- 기본 사용자 정보 -->
+        <div class="form-section">
+            <h3>🧑‍💼 기본 사용자 정보</h3>
+            
+            <div class="form-group">
+                <label for="username">사용자명 *</label>
+                <input type="text" id="username" th:field="*{username}" placeholder="사용자명을 입력하세요" />
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error"></div>
+            </div>
 
-        Password: <input type="password" th:field="*{password}" />
-        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
+            <div class="form-group">
+                <label for="password">비밀번호 *</label>
+                <input type="password" id="password" th:field="*{password}" placeholder="비밀번호를 입력하세요" />
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+            </div>
 
-        Address: <input type="text" th:field="*{address}" /><br/>
-        Age: <input type="number" th:field="*{age}" />
-        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br/>
+            <div class="form-group">
+                <label for="address">주소</label>
+                <input type="text" id="address" th:field="*{address}" placeholder="주소를 입력하세요" />
+            </div>
 
-        Job:
-        <select th:field="*{job}">
-            <option th:each="j : ${jobs}" th:value="${j}" th:text="${j}"></option>
-        </select><br/>
+            <div class="form-group">
+                <label for="age">나이</label>
+                <input type="number" id="age" th:field="*{age}" placeholder="나이를 입력하세요" min="0" max="120" />
+                <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error"></div>
+            </div>
 
-        Company:
-        <select th:field="*{company}">
-            <option th:each="c : ${companies}" th:value="${c}" th:text="${c}"></option>
-        </select><br/>
+            <div class="form-group">
+                <label for="job">직업</label>
+                <select id="job" th:field="*{job}">
+                    <option value="">직업을 선택하세요</option>
+                    <option th:each="j : ${jobs}" th:value="${j}" th:text="${j}"></option>
+                </select>
+            </div>
 
-        <button type="submit">Create</button>
+            <div class="form-group">
+                <label for="company">회사</label>
+                <select id="company" th:field="*{company}">
+                    <option value="">회사를 선택하세요</option>
+                    <option th:each="c : ${companies}" th:value="${c}" th:text="${c}"></option>
+                </select>
+            </div>
+        </div>
+
+        <!-- CommonDTO 관련 정보 -->
+        <div class="form-section">
+            <h3>🏦 거래 시스템 정보 (CommonDTO)</h3>
+            
+            <div class="form-group">
+                <label for="terminalId">터미널 ID *</label>
+                <input type="text" id="terminalId" name="terminalId" placeholder="터미널 ID를 입력하세요 (예: T001)" required />
+            </div>
+
+            <div class="form-group">
+                <label for="terminalType">터미널 타입 *</label>
+                <select id="terminalType" name="terminalType" required>
+                    <option value="">터미널 타입을 선택하세요</option>
+                    <option value="WEB">WEB</option>
+                    <option value="MOBILE">MOBILE</option>
+                    <option value="ATM">ATM</option>
+                    <option value="KIOSK">KIOSK</option>
+                    <option value="POS">POS</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="bankCode">은행 코드 *</label>
+                <input type="text" id="bankCode" name="bankCode" placeholder="은행 코드를 입력하세요 (예: 001)" maxlength="3" required />
+            </div>
+
+            <div class="form-group">
+                <label for="branchCode">지점 코드 *</label>
+                <input type="text" id="branchCode" name="branchCode" placeholder="지점 코드를 입력하세요 (예: 001)" maxlength="3" required />
+            </div>
+
+            <div class="form-group">
+                <label for="channelType">채널 타입 *</label>
+                <select id="channelType" name="channelType" required>
+                    <option value="">채널 타입을 선택하세요</option>
+                    <option value="IB">인터넷뱅킹</option>
+                    <option value="MB">모바일뱅킹</option>
+                    <option value="ATM">ATM</option>
+                    <option value="CD">CD</option>
+                    <option value="PB">폰뱅킹</option>
+                    <option value="BR">창구</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="userId">사용자 ID</label>
+                <input type="text" id="userId" name="userId" placeholder="사용자 ID를 입력하세요" />
+            </div>
+
+            <div class="form-group">
+                <label for="nation">국가 코드 *</label>
+                <select id="nation" name="nation" required>
+                    <option value="">국가를 선택하세요</option>
+                    <option value="KR">대한민국 (KR)</option>
+                    <option value="US">미국 (US)</option>
+                    <option value="JP">일본 (JP)</option>
+                    <option value="CN">중국 (CN)</option>
+                    <option value="GB">영국 (GB)</option>
+                    <option value="DE">독일 (DE)</option>
+                    <option value="FR">프랑스 (FR)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ipAddress">IP 주소</label>
+                <input type="text" id="ipAddress" name="ipAddress" placeholder="IP 주소를 입력하세요 (예: 192.168.1.1)" 
+                       pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$" />
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <button type="submit" class="btn-primary">사용자 생성</button>
+            <a th:href="@{/users}" class="btn-secondary">취소</a>
+        </div>
     </form>
+
+    <div style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-left: 4px solid #ffc107;">
+        <h4>입력 가이드:</h4>
+        <ul>
+            <li><strong>필수 항목(*):</strong> 반드시 입력해야 하는 항목입니다.</li>
+            <li><strong>터미널 ID:</strong> 거래를 수행하는 터미널의 고유 식별자</li>
+            <li><strong>은행/지점 코드:</strong> 3자리 숫자로 입력</li>
+            <li><strong>IP 주소:</strong> IPv4 형식으로 입력 (예: 192.168.1.1)</li>
+            <li><strong>CommonDTO 정보:</strong> 모든 거래 기록에 저장되는 공통 정보입니다.</li>
+        </ul>
+    </div>
 </body>
 </html>

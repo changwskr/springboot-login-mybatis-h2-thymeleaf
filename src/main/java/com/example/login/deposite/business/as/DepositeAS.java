@@ -29,6 +29,7 @@ public class DepositeAS {
 
     private final DepositeDC depositeDC;
     private final CommonDC commonDC;
+    private String actionName = "";
 
     // ==================== 메모리 세션 저장소 ====================
     /**
@@ -59,8 +60,16 @@ public class DepositeAS {
     public DepositeCDTO execute(DepositeCDTO depositeCDTO) {
         log.info("[START] DepositeAS.execute - 요청 처리 시작");
 
+        /*
+        * 1) CommonDTO 설정
+         */
         CommonDTO commonDTO = depositeCDTO.getComDTO();
-        String actionName = commonDTO.getReqName();
+
+        /*
+        2) ACTIONNAME 설정
+         */
+        this.actionName = commonDTO.getReqName();
+
         String sessionId = commonDTO.getTransactionNo(); // 거래번호를 세션ID로 사용
         log.info("요청된 actionName: {}, sessionId: {}", actionName, sessionId);
 
