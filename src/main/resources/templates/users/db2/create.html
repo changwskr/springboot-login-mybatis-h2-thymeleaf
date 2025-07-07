@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Create DB2 User</title></head>
+<head>
+    <title>DB2 사용자 생성</title>
+    <style>
+        .nav-bar { 
+            margin-bottom: 20px; 
+            padding: 10px; 
+            background-color: #f8f9fa; 
+            border-radius: 5px; 
+            border: 1px solid #dee2e6;
+        }
+        .nav-bar a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        .logout-btn {
+            float: right;
+            color: #dc3545 !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body>
-<nav>
-    <a th:href="@{/}">HOME</a> |
-    <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
-    <a th:href="@{/users/db2}">사용자목록(DB2)</a>
-    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
-</nav>
-<hr/>
-<h2>Create New User (DB2)</h2>
-<form th:action="@{/users/db2}" th:object="${user}" method="post">
-    Username: <input type="text" th:field="*{username}" />
-    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
+    <!-- 공통 네비게이션 바 -->
+    <nav class="nav-bar">
+        <a th:href="@{/}">🏠 HOME</a> |
+        <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+        <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+        <a th:href="@{/users/sync}">통합사용자관리</a> |
+        <a th:href="@{/deposite/list}">예금관리</a> |
+        <a th:href="@{/common/list}">거래이력</a> |
+        <a th:href="@{/admin/token}">토큰생성</a> |
+        <a href="/swagger-ui/index.html" target="_blank">SWAGGER</a> |
+        <a href="/actuator" target="_blank">ACTUATOR</a>
+        <span class="logout-btn"><a th:href="@{/logout}">LOGOUT</a></span>
+    </nav>
 
-    Password: <input type="password" th:field="*{password}" />
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
+    <h1>DB2 사용자 생성</h1>
+    
+    <form th:action="@{/users/db2}" th:object="${user}" method="post">
+        Username: <input type="text" th:field="*{username}" />
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div><br/>
 
-    Address: <input type="text" th:field="*{address}" /><br/>
-    Age: <input type="number" th:field="*{age}" />
-    <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br/>
+        Password: <input type="password" th:field="*{password}" />
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div><br/>
 
-    Job:
-    <select th:field="*{job}">
-        <option th:each="j : ${jobs}" th:value="${j}" th:text="${j}"></option>
-    </select><br/>
+        Address: <input type="text" th:field="*{address}" /><br/>
+        Age: <input type="number" th:field="*{age}" />
+        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div><br/>
 
-    Company:
-    <select th:field="*{company}">
-        <option th:each="c : ${companies}" th:value="${c}" th:text="${c}"></option>
-    </select><br/>
+        Job:
+        <select th:field="*{job}">
+            <option th:each="j : ${jobs}" th:value="${j}" th:text="${j}"></option>
+        </select><br/>
 
-    <button type="submit">Create</button>
-</form>
+        Company:
+        <select th:field="*{company}">
+            <option th:each="c : ${companies}" th:value="${c}" th:text="${c}"></option>
+        </select><br/>
+
+        <button type="submit">Create</button>
+    </form>
 </body>
 </html> 

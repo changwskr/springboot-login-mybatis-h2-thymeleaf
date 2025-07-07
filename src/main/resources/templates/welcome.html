@@ -1,13 +1,47 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Welcome</title>
+    <title>환영합니다</title>
+    <style>
+        .nav-bar { 
+            margin-bottom: 20px; 
+            padding: 10px; 
+            background-color: #f8f9fa; 
+            border-radius: 5px; 
+            border: 1px solid #dee2e6;
+        }
+        .nav-bar a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        .logout-btn {
+            float: right;
+            color: #dc3545 !important;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<nav><a th:href="@{/users}">🏠 Home</a></nav>
-<hr/>
-<h1>Welcome</h1>
-<p th:text="'Hello, ' + ${#httpServletRequest.remoteUser} + '!'"></p>
-<a th:href="@{/logout}">Logout</a>
+    <!-- 공통 네비게이션 바 -->
+    <nav class="nav-bar">
+        <a th:href="@{/}">🏠 HOME</a> |
+        <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+        <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+        <a th:href="@{/users/sync}">통합사용자관리</a> |
+        <a th:href="@{/deposite/list}">예금관리</a> |
+        <a th:href="@{/common/list}">거래이력</a> |
+        <a th:href="@{/admin/token}">토큰생성</a> |
+        <a href="/swagger-ui/index.html" target="_blank">SWAGGER</a> |
+        <a href="/actuator" target="_blank">ACTUATOR</a>
+        <span class="logout-btn"><a th:href="@{/logout}">LOGOUT</a></span>
+    </nav>
+
+    <h1>환영합니다!</h1>
+    
+    <p th:text="'Hello, ' + ${#httpServletRequest.remoteUser} + '!'"></p>
 </body>
 </html>

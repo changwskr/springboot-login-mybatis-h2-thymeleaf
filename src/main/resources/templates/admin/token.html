@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head><title>Admin Token Generator</title></head>
+<head>
+    <title>관리자 토큰 생성</title>
+    <style>
+        .nav-bar { 
+            margin-bottom: 20px; 
+            padding: 10px; 
+            background-color: #f8f9fa; 
+            border-radius: 5px; 
+            border: 1px solid #dee2e6;
+        }
+        .nav-bar a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .nav-bar a:hover {
+            text-decoration: underline;
+        }
+        .logout-btn {
+            float: right;
+            color: #dc3545 !important;
+            font-weight: bold;
+        }
+    </style>
+</head>
 <body>
-<nav>
-    <a th:href="@{/}">HOME</a>
-    <span style="float: right;"><a th:href="@{/logout}">LOGOUT</a></span>
-</nav>
-<hr/>
-<h2>토큰 생성(Admin)</h2>
-<form th:action="@{/admin/token}" method="post">
-    <button type="submit">토큰 생성 및 파일 저장</button>
-</form>
-<div th:if="${token}">
-    <p><b>생성된 토큰:</b> <span th:text="${token}"></span></p>
-    <p><b>파일 경로:</b> <span th:text="${filePath}"></span></p>
-</div>
-<div th:if="${error}" style="color:red;">
-    <p th:text="${error}"></p>
-</div>
+    <!-- 공통 네비게이션 바 -->
+    <nav class="nav-bar">
+        <a th:href="@{/}">🏠 HOME</a> |
+        <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+        <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+        <a th:href="@{/users/sync}">통합사용자관리</a> |
+        <a th:href="@{/deposite/list}">예금관리</a> |
+        <a th:href="@{/common/list}">거래이력</a> |
+        <a th:href="@{/admin/token}">토큰생성</a> |
+        <a href="/swagger-ui/index.html" target="_blank">SWAGGER</a> |
+        <a href="/actuator" target="_blank">ACTUATOR</a>
+        <span class="logout-btn"><a th:href="@{/logout}">LOGOUT</a></span>
+    </nav>
+
+    <h1>관리자 토큰 생성</h1>
+    
+    <form th:action="@{/admin/token}" method="post">
+        <button type="submit">토큰 생성 및 파일 저장</button>
+    </form>
+    <div th:if="${token}">
+        <p><b>생성된 토큰:</b> <span th:text="${token}"></span></p>
+        <p><b>파일 경로:</b> <span th:text="${filePath}"></span></p>
+    </div>
+    <div th:if="${error}" style="color:red;">
+        <p th:text="${error}"></p>
+    </div>
 </body>
 </html> 

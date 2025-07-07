@@ -19,9 +19,15 @@
 <body>
     <nav class="nav-bar">
         <a th:href="@{/}">🏠 HOME</a> |
-        <a th:href="@{/common/list}">전체 거래 이력</a> |
-        <a th:href="@{/common/stats/terminal}">터미널 통계</a> |
-        <a th:href="@{/common/stats/request}">요청명 통계</a>
+        <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
+        <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+        <a th:href="@{/users/sync}">통합사용자관리</a> |
+        <a th:href="@{/deposite/list}">예금관리</a> |
+        <a th:href="@{/common/list}">거래이력</a> |
+        <a th:href="@{/admin/token}">토큰생성</a> |
+        <a href="/swagger-ui/index.html" target="_blank">SWAGGER</a> |
+        <a href="/actuator" target="_blank">ACTUATOR</a>
+        <span style="float: right; color: #dc3545; font-weight: bold;"><a th:href="@{/logout}">LOGOUT</a></span>
     </nav>
     
     <h1>거래 이력 목록</h1>
