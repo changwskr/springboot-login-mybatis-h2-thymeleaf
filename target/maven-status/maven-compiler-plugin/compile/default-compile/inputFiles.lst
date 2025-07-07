@@ -1,6 +1,7 @@
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\model\CommonEntity.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\mapper\db1\UserMapperDb1.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\config\ServiceLoggingAspect.java
-C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\web\transfer\package-info.java
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\web\controller\CommonController.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\config\Db2SchemaInitializer.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\exception\GlobalExceptionHandler.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\model\H3Member.java
@@ -9,11 +10,14 @@ C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\mapper\UserMapper.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\AdminTokenController.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\LoginApplication.java
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\common\CommonUtil.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\UserDb1RestController.java
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\web\transfer\CommonCDTO.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\UserDb2RestController.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\model\UserProfile.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\UserDb1Controller.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\web\controller\DepositeController.java
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\CommonDC.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\service\LoginService.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\transfer\CommonDTO.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\model\DMember.java
@@ -22,6 +26,7 @@ C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\UserController.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\as\DepositeAS.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\dao\mapper\DepositeMapper.java
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\dao\CommonRepository.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\security\CustomUserDetailsService.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\transfer\DEP80001CDTO.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\WelcomeController.java
@@ -41,6 +46,7 @@ C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dto\DepositeDDTO.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\service\UserDb2Service.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\UserRestController.java
+C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\config\CommonSchemaInitializer.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\DepositeDC.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\controller\UserSyncController.java
 C:\Users\Administrator\Desktop\cursor\springboot-login-mybatis-h2-thymeleaf\src\main\java\com\example\login\deposite\business\dc\model\DCustomer.java

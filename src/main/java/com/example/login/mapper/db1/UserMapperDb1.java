@@ -16,7 +16,7 @@ public interface UserMapperDb1 {
     List<User> findAll();
 
     @Select("SELECT * FROM users WHERE username = #{username}")
-    User findByUsername(@Param("username") String username);
+    User findByUsername(String username);
 
     @Insert("INSERT INTO users (username, password, token, address, age, job, company) VALUES (#{username}, #{password}, #{token}, #{address}, #{age}, #{job}, #{company})")
     void insert(User user);
@@ -25,5 +25,5 @@ public interface UserMapperDb1 {
     void update(User user);
 
     @Delete("DELETE FROM users WHERE username = #{username}")
-    void delete(@Param("username") String username);
+    void delete(String username);
 } 

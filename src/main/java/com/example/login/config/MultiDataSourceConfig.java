@@ -11,8 +11,11 @@ import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
@@ -54,6 +57,24 @@ public class MultiDataSourceConfig {
     @Bean
     public DataSourceTransactionManager db1TransactionManager(@Qualifier("db1DataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    // DB1 스키마 초기화
+    @Bean
+    public DataSourceInitializer db1DataSourceInitializer(@Qualifier("db1DataSource") DataSource dataSource) {
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(dataSource);
+        
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(new ClassPathResource("schema.sql"));
+        populator.addScript(new ClassPathResource("data.sql"));
+        populator.setContinueOnError(true);  // 오류 시 계속 진행
+        populator.setIgnoreFailedDrops(true); // DROP 실패 무시
+        
+        initializer.setDatabasePopulator(populator);
+        initializer.setEnabled(true);
+        
+        return initializer;
     }
 
     // JPA Configuration for DB1
@@ -111,6 +132,24 @@ public class MultiDataSourceConfig {
     @Bean
     public DataSourceTransactionManager db2TransactionManager(@Qualifier("db2DataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    // DB2 스키마 초기화
+    @Bean
+    public DataSourceInitializer db2DataSourceInitializer(@Qualifier("db2DataSource") DataSource dataSource) {
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(dataSource);
+        
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(new ClassPathResource("schema.sql"));
+        populator.addScript(new ClassPathResource("data.sql"));
+        populator.setContinueOnError(true);  // 오류 시 계속 진행
+        populator.setIgnoreFailedDrops(true); // DROP 실패 무시
+        
+        initializer.setDatabasePopulator(populator);
+        initializer.setEnabled(true);
+        
+        return initializer;
     }
 }
 

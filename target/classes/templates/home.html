@@ -26,11 +26,11 @@
     </style>
 </head>
 <body>
-<h1>HOME</h1>
+<h1>Spring Boot Login Application 홈페이지</h1>
 <nav class="nav-bar">
     <a th:href="@{/}">🏠 HOME</a> |
-    <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
-    <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+    <a th:href="@{/users/db1}">사용자목록(1번 DB)</a> |
+    <a th:href="@{/users/db2}">사용자목록(2번 DB)</a> |
     <a th:href="@{/users/sync}">통합사용자관리</a> |
     <a th:href="@{/deposite/list}">예금관리</a> |
     <a th:href="@{/common/list}">거래이력</a> |
@@ -45,9 +45,12 @@
 <div style="margin-top: 20px;">
     <h3>사용자 관리:</h3>
     <ul>
-        <li><a th:href="@{/users/db1}">사용자목록(DB1)</a> - DB1의 사용자만 조회/관리</li>
-        <li><a th:href="@{/users/db2}">사용자목록(DB2)</a> - DB2의 사용자만 조회/관리</li>
-        <li><a th:href="@{/users/sync}" style="color: #2196F3; font-weight: bold;">통합사용자관리</a> - 두 DB에 동시에 등록/수정/삭제</li>
+        <li><a th:href="@{/users/db1}">사용자 목록 (1번 DB)</a> - DB1 사용자 조회 및 관리</li>
+        <li><a th:href="@{/users/new}">사용자 등록 (1번 DB)</a> - DB1에 새 사용자 등록</li>
+        <li><a th:href="@{/users/db2}">사용자 목록 (2번 DB)</a> - DB2 사용자 조회 및 관리</li>
+        <li><a th:href="@{/users/db2/new}">사용자 등록 (2번 DB)</a> - DB2에 새 사용자 등록</li>
+        <li><a th:href="@{/users/sync}">통합 사용자 관리</a> - 두 DB의 사용자 통합 관리</li>
+        <li><a th:href="@{/users/sync/new}">통합 사용자 등록</a> - 두 DB에 동시 등록</li>
     </ul>
 </div>
 

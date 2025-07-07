@@ -28,7 +28,10 @@ public class UserService {
         logger.info("=== UserService.findAll() START ===");
         try {
             List<User> users = userMapperDb1.findAll();
-            logger.info("=== UserService.findAll() END - Found {} users ===", users.size());
+            for (User user : users) {
+                user.setDbName("DB1");
+            }
+            logger.info("=== UserService.findAll() END - Found {} users from DB1 ===", users.size());
             return users;
         } catch (Exception e) {
             logger.error("=== UserService.findAll() ERROR ===", e);
@@ -40,6 +43,9 @@ public class UserService {
         logger.info("=== UserService.findByUsername() START - username: {} ===", username);
         try {
             User user = userMapperDb1.findByUsername(username);
+            if (user != null) {
+                user.setDbName("DB1");
+            }
             logger.info("=== UserService.findByUsername() END - User found: {} ===", user != null);
             return user;
         } catch (Exception e) {
@@ -53,11 +59,13 @@ public class UserService {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             if ("changwskr".equals(user.getUsername())) {
+                user.setDbName("DB2");
                 userMapperDb2.insert(user);
             } else {
+                user.setDbName("DB1");
                 userMapperDb1.insert(user);
             }
-            logger.info("=== UserService.save() END - User saved successfully ===");
+            logger.info("=== UserService.save() END - User saved successfully to {} ===", user.getDbName());
         } catch (Exception e) {
             logger.error("=== UserService.save() ERROR ===", e);
             throw e;
@@ -69,11 +77,13 @@ public class UserService {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             if ("changwskr".equals(user.getUsername())) {
+                user.setDbName("DB2");
                 userMapperDb2.update(user);
             } else {
+                user.setDbName("DB1");
                 userMapperDb1.update(user);
             }
-            logger.info("=== UserService.update() END - User updated successfully ===");
+            logger.info("=== UserService.update() END - User updated successfully in {} ===", user.getDbName());
         } catch (Exception e) {
             logger.error("=== UserService.update() ERROR ===", e);
             throw e;
@@ -84,7 +94,7 @@ public class UserService {
         logger.info("=== UserService.delete() START - username: {} ===", username);
         try {
             userMapperDb1.delete(username);
-            logger.info("=== UserService.delete() END - User deleted successfully ===");
+            logger.info("=== UserService.delete() END - User deleted successfully from DB1 ===");
         } catch (Exception e) {
             logger.error("=== UserService.delete() ERROR ===", e);
             throw e;

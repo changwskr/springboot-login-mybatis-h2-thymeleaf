@@ -29,8 +29,8 @@
     <!-- 공통 네비게이션 바 -->
     <nav class="nav-bar">
         <a th:href="@{/}">🏠 HOME</a> |
-        <a th:href="@{/users/db1}">사용자목록(DB1)</a> |
-        <a th:href="@{/users/db2}">사용자목록(DB2)</a> |
+        <a th:href="@{/users/db1}">사용자목록(1번 DB)</a> |
+        <a th:href="@{/users/db2}">사용자목록(2번 DB)</a> |
         <a th:href="@{/users/sync}">통합사용자관리</a> |
         <a th:href="@{/deposite/list}">예금관리</a> |
         <a th:href="@{/common/list}">거래이력</a> |
@@ -40,10 +40,10 @@
         <span class="logout-btn"><a th:href="@{/logout}">LOGOUT</a></span>
     </nav>
 
-    <h1>사용자 목록</h1>
+    <h1>사용자 목록 (1번 DB)</h1>
     <a th:href="@{/users/new}">Create New User</a>
     <table border="1">
-        <tr><th>Username</th><th>Password</th><th>Token</th><th>Address</th><th>Age</th><th>Job</th><th>Company</th><th>Actions</th></tr>
+        <tr><th>Username</th><th>Password</th><th>Token</th><th>Address</th><th>Age</th><th>Job</th><th>Company</th><th>DB구분</th><th>Actions</th></tr>
         <tr th:each="user : ${users}">
             <td th:text="${user.username}"></td>
             <td th:text="${user.password}"></td>
@@ -52,6 +52,7 @@
             <td th:text="${user.age}"></td>
             <td th:text="${user.job}"></td>
             <td th:text="${user.company}"></td>
+            <td><span style="background-color: #d4edda; padding: 3px 8px; border-radius: 3px; color: #155724;" th:text="${user.dbDisplayName}"></span></td>
             <td>
                 <a th:href="@{'/users/edit/' + ${user.username}}">Edit</a> |
                 <a th:href="@{'/users/delete/' + ${user.username}}">Delete</a>
