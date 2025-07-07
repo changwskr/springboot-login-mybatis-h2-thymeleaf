@@ -61,14 +61,17 @@ public class DepositeAS {
         log.info("[START] DepositeAS.execute - 요청 처리 시작");
 
         /*
-        * 1) CommonDTO 설정
+        * 1) CommonDTO 설정 및 ACTIONNAME 설정
          */
         CommonDTO commonDTO = depositeCDTO.getComDTO();
-
-        /*
-        2) ACTIONNAME 설정
-         */
+        
+        // actionName을 reqName에서 가져오기
         this.actionName = commonDTO.getReqName();
+        
+        // CommonDTO의 시간 정보가 비어있다면 현재 시간으로 설정
+        if (commonDTO.getSystemInTime() == null || commonDTO.getSystemInTime().isEmpty()) {
+            commonDTO.setSystemInTimeNow();
+        }
 
         String sessionId = commonDTO.getTransactionNo(); // 거래번호를 세션ID로 사용
         log.info("요청된 actionName: {}, sessionId: {}", actionName, sessionId);
@@ -135,7 +138,7 @@ public class DepositeAS {
             log.info("처리 결과: id={}, name={}", dto.getId(), dto.getName());
         }
 
-        depositeCDTO.setDdto(allList);
+        depositeCDTO.setDDtoList(allList);
 
         log.info("[END] DepositeAS.execute - 요청 처리 완료");
         return this.depositeCDTO;

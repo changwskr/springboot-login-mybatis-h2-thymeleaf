@@ -32,7 +32,7 @@ public class DepositeController {
         dto.setComDTO(new com.example.login.deposite.transfer.CommonDTO());
         dto.getComDTO().setReqName("getall");
         DepositeCDTO result = depositeAS.execute(dto);
-        model.addAttribute("list", result.getDdto());
+        model.addAttribute("list", result.getDDtoList());
         log.info("[END] /deposite/list 요청 종료");
         return "deposite/list";
     }
@@ -73,7 +73,7 @@ public class DepositeController {
         dto.setComDTO(new com.example.login.deposite.transfer.CommonDTO());
         dto.getComDTO().setReqName("get");
         DepositeCDTO result = depositeAS.execute(dto);
-        model.addAttribute("deposite", result.getDdto() != null && !result.getDdto().isEmpty() ? result.getDdto().get(0) : null);
+        model.addAttribute("deposite", result.getDDtoList() != null && !result.getDDtoList().isEmpty() ? result.getDDtoList().get(0) : null);
         log.info("[END] /deposite/view/{} 요청 종료", id);
         return "deposite/view";
     }

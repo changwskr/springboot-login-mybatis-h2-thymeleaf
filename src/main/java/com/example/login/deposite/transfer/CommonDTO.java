@@ -1,6 +1,7 @@
 package com.example.login.deposite.transfer;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 공통 데이터 전송 객체
@@ -242,30 +243,38 @@ public class CommonDTO {
 
     /**
      * 시스템 입장 시간을 현재 시간으로 설정
+     * 형식: yyyyMMddHHmmss (14자)
      */
     public void setSystemInTimeNow() {
-        this.systemInTime = LocalDateTime.now().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        this.systemInTime = LocalDateTime.now().format(formatter);
     }
 
     /**
      * 시스템 퇴장 시간을 현재 시간으로 설정
+     * 형식: yyyyMMddHHmmss (14자)
      */
     public void setSystemOutTimeNow() {
-        this.systemOutTime = LocalDateTime.now().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        this.systemOutTime = LocalDateTime.now().format(formatter);
     }
 
     /**
      * 시스템 날짜를 현재 날짜로 설정
+     * 형식: yyyyMMdd (8자)
      */
     public void setSystemDateNow() {
-        this.systemDate = LocalDateTime.now().toLocalDate().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        this.systemDate = LocalDateTime.now().format(formatter);
     }
 
     /**
      * 업무 날짜를 현재 날짜로 설정
+     * 형식: yyyyMMdd (8자)
      */
     public void setBusinessDateNow() {
-        this.businessDate = LocalDateTime.now().toLocalDate().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+        this.businessDate = LocalDateTime.now().format(formatter);
     }
 
     @Override
