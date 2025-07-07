@@ -4,6 +4,12 @@
     <title>예금 등록</title>
 </head>
 <body>
+    <nav style="margin-bottom: 20px; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
+        <a th:href="@{/}">🏠 HOME</a> |
+        <a th:href="@{/deposite/list}">예금 목록</a> |
+        <a th:href="@{/deposite/form}">예금 등록</a>
+    </nav>
+    
     <h1>예금 등록</h1>
     <form th:action="@{/deposite/save}" th:object="${deposite}" method="post">
         <label>이름: <input type="text" th:field="*{name}" /></label><br/>
@@ -12,6 +18,10 @@
         <label>연락처: <input type="text" th:field="*{contact}" /></label><br/>
         <button type="submit">저장</button>
     </form>
-    <a th:href="@{/deposite/list}">목록으로</a>
+    
+    <div style="margin-top: 20px;">
+        <a th:href="@{/deposite/list}">목록으로</a> |
+        <a th:href="@{/}">🏠 HOME으로</a>
+    </div>
 </body>
 </html> 

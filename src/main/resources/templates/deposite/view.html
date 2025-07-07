@@ -4,6 +4,12 @@
     <title>예금 상세</title>
 </head>
 <body>
+    <nav style="margin-bottom: 20px; padding: 10px; background-color: #f8f9fa; border-radius: 5px;">
+        <a th:href="@{/}">🏠 HOME</a> |
+        <a th:href="@{/deposite/list}">예금 목록</a> |
+        <a th:href="@{/deposite/form}">예금 등록</a>
+    </nav>
+    
     <h1>예금 상세</h1>
     <div th:if="${deposite != null}">
         <p>ID: <span th:text="${deposite.id}"></span></p>
@@ -12,6 +18,10 @@
         <p>주소: <span th:text="${deposite.address}"></span></p>
         <p>연락처: <span th:text="${deposite.contact}"></span></p>
     </div>
-    <a th:href="@{/deposite/list}">목록으로</a>
+    
+    <div style="margin-top: 20px;">
+        <a th:href="@{/deposite/list}">목록으로</a> |
+        <a th:href="@{/}">🏠 HOME으로</a>
+    </div>
 </body>
 </html> 
