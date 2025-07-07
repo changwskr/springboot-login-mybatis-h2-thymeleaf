@@ -7,3 +7,11 @@ CREATE TABLE users (
     job VARCHAR(100),
     company VARCHAR(100)
 );
+
+
+CREATE TABLE MEMBER (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    address VARCHAR(255),
+    contact VARCHAR(100)
+);
