@@ -25,6 +25,14 @@ spring:
       data-locations: classpath:data.sql
   jpa:
     defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+        
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
   type-aliases-package: com.example.login.model,com.example.login.deposite.business.dc.model
@@ -42,6 +50,8 @@ logging:
     org.apache.ibatis: DEBUG
     org.springframework.jdbc.datasource.init.ScriptUtils: DEBUG  # schema.sql 실행 로그
     com.example.login: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
 
 

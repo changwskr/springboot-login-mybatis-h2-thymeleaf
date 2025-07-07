@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>거래 상세 정보</title>
+    <style>
+        .nav-bar { margin-bottom: 20px; padding: 10px; background-color: #f8f9fa; border-radius: 5px; }
+        .detail-container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .detail-header { margin: 10px 0; padding: 15px; background-color: #d1ecf1; border-radius: 5px; border: 1px solid #bee5eb; }
+        .detail-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .detail-table th, .detail-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .detail-table th { background-color: #f2f2f2; font-weight: bold; width: 30%; }
+        .detail-table tr:nth-child(even) { background-color: #f9f9f9; }
+        .btn { padding: 8px 15px; margin: 5px; border: none; border-radius: 3px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-primary { background-color: #007bff; color: white; }
+        .btn-secondary { background-color: #6c757d; color: white; }
+        .btn-success { background-color: #28a745; color: white; }
+        .btn-info { background-color: #17a2b8; color: white; }
+        .value-cell { font-weight: bold; color: #495057; }
+        .system-info { margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px; border-left: 4px solid #007bff; }
+    </style>
+</head>
+<body>
+    <div class="detail-container">
+        <nav class="nav-bar">
+            <a th:href="@{/}">🏠 HOME</a> |
+            <a th:href="@{/common/list}">전체 거래 이력</a> |
+            <a th:href="@{/common/stats/terminal}">터미널 통계</a> |
+            <a th:href="@{/common/stats/request}">요청명 통계</a>
+        </nav>
+        
+        <h1>거래 상세 정보</h1>
+        
+        <div class="detail-header" th:if="${commonInfo != null}">
+            <strong>🔍 거래 ID:</strong> <span th:text="${commonInfo.id}">1</span>
+            <span style="float: right;">
+                <a th:href="@{/api/common/transaction/{transactionNo}(transactionNo=${commonInfo.transactionNo})}" 
+                   class="btn btn-info" target="_blank">JSON API</a>
+            </span>
+        </div>
+
+        <div class="detail-header" th:if="${commonInfo == null}" style="background-color: #f8d7da; border-color: #f5c6cb; color: #721c24;">
+            <strong>⚠️ 오류:</strong> <span th:text="${error}">해당 ID의 Common 정보를 찾을 수 없습니다.</span>
+        </div>
+
+        <table class="detail-table" th:if="${commonInfo != null}">
+            <tr>
+                <th>거래번호</th>
+                <td class="value-cell" th:text="${commonInfo.transactionNo}">TXN20250107001</td>
+            </tr>
+            <tr>
+                <th>터미널 ID</th>
+                <td class="value-cell" th:text="${commonInfo.terminalID}">TERM001</td>
+            </tr>
+            <tr>
+                <th>터미널 타입</th>
+                <td class="value-cell" th:text="${commonInfo.terminalType}">WEB</td>
+            </tr>
+            <tr>
+                <th>사용자 ID</th>
+                <td class="value-cell" th:text="${commonInfo.userID}">SYSTEM</td>
+            </tr>
+            <tr>
+                <th>요청명</th>
+                <td class="value-cell" th:text="${commonInfo.reqName}">INIT</td>
+            </tr>
+            <tr>
+                <th>채널 타입</th>
+                <td class="value-cell" th:text="${commonInfo.channelType}">WEB</td>
+            </tr>
+            <tr>
+                <th>은행 코드</th>
+                <td class="value-cell" th:text="${commonInfo.bankCode}">001</td>
+            </tr>
+            <tr>
+                <th>지점 코드</th>
+                <td class="value-cell" th:text="${commonInfo.branchCode}">001</td>
+            </tr>
+            <tr>
+                <th>거래 코드</th>
+                <td class="value-cell" th:text="${commonInfo.txcode}">INIT</td>
+            </tr>
+            <tr>
+                <th>IP 주소</th>
+                <td class="value-cell" th:text="${commonInfo.ipAddress}">127.0.0.1</td>
+            </tr>
+            <tr>
+                <th>시스템 날짜</th>
+                <td class="value-cell" th:text="${commonInfo.systemDate}">20250107</td>
+            </tr>
+            <tr>
+                <th>시스템 입장 시간</th>
+                <td class="value-cell" th:text="${commonInfo.systemInTime}">164100</td>
+            </tr>
+            <tr>
+                <th>시스템 퇴장 시간</th>
+                <td class="value-cell" th:text="${commonInfo.systemOutTime}">164200</td>
+            </tr>
+            <tr>
+                <th>생성 일시</th>
+                <td class="value-cell" th:text="${#temporals.format(commonInfo.createdDate, 'yyyy-MM-dd HH:mm:ss')}">2025-01-07 16:41:00</td>
+            </tr>
+            <tr th:if="${commonInfo.updatedDate != null}">
+                <th>수정 일시</th>
+                <td class="value-cell" th:text="${#temporals.format(commonInfo.updatedDate, 'yyyy-MM-dd HH:mm:ss')}">2025-01-07 16:41:00</td>
+            </tr>
+        </table>
+
+        <div class="system-info" th:if="${commonInfo != null}">
+            <h3>📋 시스템 정보</h3>
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li><strong>거래 순번:</strong> <span th:text="${commonInfo.id}">1</span></li>
+                <li><strong>처리 상태:</strong> 완료</li>
+                <li><strong>거래 유형:</strong> <span th:text="${commonInfo.reqName}">시스템 초기화</span></li>
+                <li><strong>접속 경로:</strong> <span th:text="${commonInfo.terminalType + ' (' + commonInfo.channelType + ')'}">WEB (WEB)</span></li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 30px; text-align: center;">
+            <a th:href="@{/common/list}" class="btn btn-secondary">목록으로</a>
+            <span th:if="${commonInfo != null}">
+                <a th:href="@{/common/user/{userID}(userID=${commonInfo.userID})}" class="btn btn-success">이 사용자의 거래이력</a>
+                <a th:href="@{/api/common/terminal/{terminalID}(terminalID=${commonInfo.terminalID})}" 
+                   class="btn btn-info" target="_blank">이 터미널의 거래이력</a>
+            </span>
+            <a th:href="@{/}" class="btn btn-primary">🏠 HOME</a>
+        </div>
+    </div>
+</body>
+</html> 

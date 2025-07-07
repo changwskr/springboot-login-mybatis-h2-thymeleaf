@@ -7,12 +7,19 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 public class MultiDataSourceConfig {
@@ -47,6 +54,34 @@ public class MultiDataSourceConfig {
     @Bean
     public DataSourceTransactionManager db1TransactionManager(@Qualifier("db1DataSource") DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    // JPA Configuration for DB1
+    @Bean
+    @Primary
+    public LocalContainerEntityManagerFactoryBean db1EntityManagerFactory(
+            EntityManagerFactoryBuilder builder,
+            @Qualifier("db1DataSource") DataSource dataSource) {
+        
+        Map<String, Object> jpaProperties = new HashMap<>();
+        jpaProperties.put("hibernate.hbm2ddl.auto", "create-drop");
+        jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        jpaProperties.put("hibernate.show_sql", "true");
+        jpaProperties.put("hibernate.format_sql", "true");
+        
+        return builder
+                .dataSource(dataSource)
+                .packages("com.example.login.deposite.business.dc.model")
+                .persistenceUnit("db1")
+                .properties(jpaProperties)
+                .build();
+    }
+
+    @Bean
+    @Primary
+    public JpaTransactionManager jpaTransactionManager(
+            @Qualifier("db1EntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 
     // DB2
@@ -85,4 +120,12 @@ class Db1MapperConfig {}
 
 @MapperScan(basePackages = "com.example.login.mapper.db2", sqlSessionTemplateRef = "db2SqlSessionTemplate")
 @Configuration
-class Db2MapperConfig {} 
+class Db2MapperConfig {}
+
+@EnableJpaRepositories(
+    basePackages = "com.example.login.deposite.business.dc.dao",
+    entityManagerFactoryRef = "db1EntityManagerFactory",
+    transactionManagerRef = "jpaTransactionManager"
+)
+@Configuration
+class JpaConfig {} 
